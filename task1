@@ -1,0 +1,41 @@
+import javax.swing.*;
+import java.awt.event.*;
+
+public class Word_Counter1 extends JFrame implements ActionListener {
+    private final JTextArea textArea;
+    private final JButton countButton;
+    private final JLabel countlabel;
+
+    public Word_Counter1() {
+        super("Word Counter");
+
+        textArea = new JTextArea(10, 30);
+        countButton = new JButton("Count");
+        countlabel = new JLabel("Word Count : 0");
+
+        JPanel panel = new JPanel();
+        panel.add(new JScrollPane(textArea));
+        panel.add(countButton);
+        panel.add(countlabel);
+        add(panel);
+
+        countButton.addActionListener(this);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+     String Text   = textArea.getText();
+     String [] word = Text.split("\\s");
+     int count = word.length;
+     countlabel.setText("Word Count :" + count );
+    }
+
+
+        public static void main(String[] args) {
+         Word_Counter1 word_counter1 = new Word_Counter1();
+        }
+}
